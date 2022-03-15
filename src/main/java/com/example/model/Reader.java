@@ -7,7 +7,10 @@ public class Reader extends User {
     private List<BookCopy> bookCopies;
     private double fees;
 
-    private Reader(){};
+    public Reader(Long ID, String fullName){
+        this.ID = ID;
+        this.fullName = fullName;
+    };
     public List<BookCopy> getBookCopies() {
         return bookCopies;
     }
@@ -19,9 +22,7 @@ public class Reader extends User {
         private Reader reader;
 
         public Builder(Long ID, String fullName){
-            reader = new Reader();
-            reader.ID = ID;
-            reader.fullName = fullName;
+            reader = new Reader(ID,fullName);
         }
         public Builder email(String email){
             reader.email = email;

@@ -12,7 +12,10 @@ public class Book {
     private List<Author> authors;
     private List<BookCopy> copies;
 
-    private Book(){};
+    public Book(String ISBN, String title){
+        this.ISBN = ISBN;
+        this.title = title;
+    };
 
     public String getTitle() {
         return title;
@@ -66,9 +69,7 @@ public class Book {
     public static class Builder{
         private Book book;
         public Builder(String ISBN, String title){
-            book = new Book();
-            book.ISBN = ISBN;
-            book.title = title;
+            book = new Book(ISBN, title);
         }
         public Builder information(String information){
             book.information = information;

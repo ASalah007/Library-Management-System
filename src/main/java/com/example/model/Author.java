@@ -12,7 +12,10 @@ public class Author {
 
     private List<Book> books;
 
-    private Author(){};
+    public Author(Long ID, String fullName){
+        this.ID = ID;
+        this.fullName = fullName;
+    };
     public Long getID() {
         return ID;
     }
@@ -28,6 +31,7 @@ public class Author {
     public List<Book> getBooks() {
         return books;
     }
+
 
     @Override
     public int hashCode() {
@@ -55,9 +59,7 @@ public class Author {
     public static class Builder{
         private Author author;
         public Builder(Long ID, String fullName){
-            author = new Author();
-            author.ID = ID;
-            author.fullName = fullName;
+            author = new Author(ID, fullName);
         }
 
         public Builder birthDate(Date birthDate){

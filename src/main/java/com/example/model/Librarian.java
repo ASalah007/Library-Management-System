@@ -4,14 +4,15 @@ import java.util.List;
 
 public class Librarian extends User {
 
-    private Librarian (){};
+    public Librarian (Long ID, String fullName){
+        this.ID = ID;
+        this.fullName = fullName;
+    };
 
     public static class Builder{
         private Librarian librarian;
         public Builder(Long ID, String fullName){
-            librarian = new Librarian();
-            librarian.ID = ID;
-            librarian.fullName = fullName;
+            librarian = new Librarian(ID, fullName);
         }
         public Builder email(String email){
             librarian.email = email;

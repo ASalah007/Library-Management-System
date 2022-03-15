@@ -8,7 +8,7 @@ public class BookCopy {
     private PhysicalCondition physicalCondition;
     private String branch;
 
-    private BookCopy(){};
+    public BookCopy(Long ID){this.ID = ID;}
 
     public Long getID() {
         return ID;
@@ -50,8 +50,7 @@ public class BookCopy {
         private BookCopy copy;
 
         public Builder(Long ID){
-            copy = new BookCopy();
-            copy.ID = ID;
+            copy = new BookCopy(ID);
         }
         public Builder cost(Long cost){
             copy.cost = cost;
