@@ -101,4 +101,16 @@ public class BookDaoJdbc implements BookDao{
     public void updateBook(Book book, String newTitle, String newInformation, Long newNumberOfPages) {
         // TODO
     }
+
+    public static void main(String[] args){
+        try{
+            String sql = Files.readString(Path.of(BookDaoJdbc.class.getResource("findAllBooksQuery.sql").getPath()));
+            System.out.println("ahmed");
+            System.out.println(sql);
+        }
+        catch(Exception ex){
+
+        }
+
+    }
 }
