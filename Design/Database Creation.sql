@@ -1,28 +1,49 @@
 
+drop database if exists lms;
 create database lms;
 use lms;
-CREATE TABLE reader (
-    ID INT AUTO_INCREMENT,
-    full_name VARCHAR(150) NOT NULL,
-    email VARCHAR(150) NOT NULL,
-    password VARCHAR(500) NOT NULL,
-    PRIMARY KEY (ID)
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT,
+    first_name VARCHAR(64) NOT NULL,
+    last_name VARCHAR(64),
+    address VARCHAR(512),
+    email VARCHAR(256) NOT NULL,
+    password VARCHAR(256) NOT NULL,
+    PRIMARY KEY (id)
 );
-CREATE TABLE librarian (
-    ID INT AUTO_INCREMENT,
-    full_name VARCHAR(150) NOT NULL,
-    email VARCHAR(150) NOT NULL,
-    password VARCHAR(500) NOT NULL,
-    PRIMARY KEY (ID)
+
+CREATE TABLE readers (
+    id INT AUTO_INCREMENT,
+    user_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id)
+        REFERENCES users (id)
 );
-CREATE TABLE author (
-    ID INT AUTO_INCREMENT,
-    full_name VARCHAR(150) NOT NULL,
+
+create table branches(
+	id int auto_increment,
+    name varchar(256),
+    address varchar(256),
+    primary key(id)
+);
+
+CREATE TABLE librarians (
+    id INT AUTO_INCREMENT,
+    user_id int,
+    branch_id int,
+    PRIMARY KEY (id),
+    foreign key(user_id) references users(id),
+    foreign key(branch_id) references branches(id)
+);
+CREATE TABLE authors (
+    author_id INT AUTO_INCREMENT,
+    full_name VARCHAR(128) NOT NULL,
     birthdate DATE,
-    information VARCHAR(2000),
-    PRIMARY KEY (ID)
+    information VARCHAR(2048),
+    PRIMARY KEY (author_id)
 );
-CREATE TABLE book (
+CREATE TABLE books (
     ISBN varchar(24) NOT NULL,
     information VARCHAR(2000) NOT NULL,
     title VARCHAR(150) NOT NULL,
@@ -30,47 +51,61 @@ CREATE TABLE book (
     PRIMARY KEY (ISBN)
 );
 CREATE TABLE book_author (
-    ID INT,
+    author_id INT,
     ISBN varchar(24),
-    FOREIGN KEY (ID)
-        REFERENCES author (ID),
+    FOREIGN KEY (author_id)
+        REFERENCES authors (author_id),
     FOREIGN KEY (ISBN)
-        REFERENCES book (ISBN),
-    PRIMARY KEY (ID , ISBN)
+        REFERENCES books (ISBN),
+    PRIMARY KEY (author_id , ISBN)
 );
+
+create table categories(
+	category_id int auto_increment,
+    name varchar(128),
+    primary key(category_id)
+);
+
 CREATE TABLE book_category (
-    category_name VARCHAR(150),
-    ISBN varchar(24) NOT NULL,
-    PRIMARY KEY (ISBN , category_name),
+    category_id int,
+    ISBN varchar(24),
+    PRIMARY KEY (ISBN , category_id),
     FOREIGN KEY (ISBN)
-        REFERENCES book (ISBN)
+        REFERENCES books (ISBN)
 );
-CREATE TABLE book_copy (
-    ID INT AUTO_INCREMENT,
+create table physical_conditions(
+	physical_condition_id tinyint auto_increment,
+    physical_condition varchar(128),
+    primary key(physical_condition_id)
+);
+CREATE TABLE book_copies (
+    book_copy_id INT AUTO_INCREMENT,
     cost INT NOT NULL,
-    physical_condition ENUM('excellent', 'very-good', 'good', 'usable', 'not-usable'),
-    PRIMARY KEY (ID)
+    physical_condition_id tinyint,
+    PRIMARY KEY (book_copy_id),
+    foreign key(physical_condition_id) references physical_conditions(physical_condition_id)
 );
+
 CREATE TABLE book_book_copy (
-    ID INT NOT NULL,
+    book_copy_id INT NOT NULL,
     ISBN varchar(24) NOT NULL,
-    FOREIGN KEY (ID)
-        REFERENCES book_copy (ID),
+    FOREIGN KEY (book_copy_id)
+        REFERENCES book_copies (book_copy_id),
     FOREIGN KEY (ISBN)
-        REFERENCES book (ISBN)
+        REFERENCES books (ISBN)
 );
 CREATE TABLE borrows (
-    book_copy_ID INT NOT NULL,
-    reader_ID INT NOT NULL,
+    book_copy_id INT NOT NULL,
+    reader_id INT NOT NULL,
     due_date DATE NOT NULL,
     return_date DATE,
-    FOREIGN KEY (book_copy_ID)
-        REFERENCES book_copy (ID),
-    FOREIGN KEY (reader_ID)
-        REFERENCES reader (ID),
-    PRIMARY KEY (book_copy_Id , reader_ID)
+    FOREIGN KEY (book_copy_id)
+        REFERENCES book_copies (book_copy_id),
+    FOREIGN KEY (reader_id)
+        REFERENCES readers(id),
+    PRIMARY KEY (book_copy_id , reader_id)
 );
-commit;
+
 
 
 
