@@ -44,20 +44,21 @@ CREATE TABLE authors (
     PRIMARY KEY (author_id)
 );
 CREATE TABLE books (
-    ISBN varchar(32) NOT NULL,
+	book_id int auto_increment,
+    ISBN varchar(32) NOT NULL unique,
     information VARCHAR(2000) NOT NULL,
     title VARCHAR(150) NOT NULL,
     number_of_pages INT NOT NULL,
-    PRIMARY KEY (ISBN)
+    PRIMARY KEY (book_id)
 );
 CREATE TABLE book_author (
     author_id INT,
-    ISBN varchar(32),
+    book_id int,
     FOREIGN KEY (author_id)
         REFERENCES authors (author_id),
-    FOREIGN KEY (ISBN)
-        REFERENCES books (ISBN),
-    PRIMARY KEY (author_id , ISBN)
+    FOREIGN KEY (book_id)
+        REFERENCES books (book_id),
+    PRIMARY KEY (author_id , book_id)
 );
 
 create table categories(
@@ -68,10 +69,10 @@ create table categories(
 
 CREATE TABLE book_category (
     category_id int,
-    ISBN varchar(32),
-    PRIMARY KEY (ISBN , category_id),
-    FOREIGN KEY (ISBN)
-        REFERENCES books (ISBN)
+    book_id int,
+    PRIMARY KEY (book_id , category_id),
+    FOREIGN KEY (book_id)
+        REFERENCES books (book_id)
 );
 create table physical_conditions(
 	physical_condition_id tinyint auto_increment,
@@ -83,20 +84,13 @@ CREATE TABLE book_copies (
     cost numeric(4,2) NOT NULL,
     physical_condition_id tinyint,
     branch_id int,
+    book_id int,
     PRIMARY KEY (book_copy_id),
     foreign key(physical_condition_id) references physical_conditions(physical_condition_id),
-    foreign key(branch_id) references branches(branch_id)
+    foreign key(branch_id) references branches(branch_id),
+    foreign key(book_id) references books(book_id)
 );
 
-CREATE TABLE book_book_copy (
-    book_copy_id INT NOT NULL,
-    ISBN varchar(32) NOT NULL,
-    FOREIGN KEY (book_copy_id)
-        REFERENCES book_copies (book_copy_id),
-    FOREIGN KEY (ISBN)
-        REFERENCES books (ISBN),
-	primary key(ISBN, book_copy_id)
-);
 CREATE TABLE borrows (
     book_copy_id INT NOT NULL,
     reader_id INT NOT NULL,

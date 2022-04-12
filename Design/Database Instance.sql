@@ -8,18 +8,19 @@ insert into authors values(default, "Somayia Ahmed", "1998-10-1", "Lorem Ipsum i
 
 -- insert books
 
-insert into books values("0-3344-5099-3", "information about random book", "Book1", 123);
-insert into books values("0-2628-1422-6", "information about random book", "Book2", 537);
-insert into books values("0-5219-5553-X", "information about random book", "Book3", 137);
-insert into books values("0-4179-6655-5", "information about random book", "Book4", 852);
-insert into books values("0-1318-1542-3", "information about random book", "Book5", 334);
+insert into books values(default, "0-3344-5099-3", "information about random book", "Book1", 123);
+insert into books values(default, "0-2628-1422-6", "information about random book", "Book2", 537);
+insert into books values(default, "0-5219-5553-X", "information about random book", "Book3", 137);
+insert into books values(default, "0-4179-6655-5", "information about random book", "Book4", 852);
+insert into books values(default, "0-1318-1542-3", "information about random book", "Book5", 334);
 
 -- relate books with autors
-insert into book_author values(1,"0-3344-5099-3");
-insert into book_author values(2,"0-2628-1422-6");
-insert into book_author values(3,"0-5219-5553-X");
-insert into book_author values(2,"0-1318-1542-3");
-insert into book_author values(1,"0-4179-6655-5");
+insert into book_author values(1,1);
+insert into book_author values(2,2);
+insert into book_author values(3,1);
+insert into book_author values(2,4);
+insert into book_author values(2,5);
+insert into book_author values(1,3);
 
 -- insert physical conditions 
 
@@ -36,22 +37,13 @@ insert into branches values(default, "Alex branch", "36 st, Alex, Cairo");
 insert into branches values(default, "Nasr City branch", "15 st, Nasr City, Cairo");
 
 -- insert book copies
-insert into book_copies values(default, 25.39, 1, 1);
-insert into book_copies values(default, 50.25, 3, 1); 
-insert into book_copies values(default, 75.00, 2, 1); 
-insert into book_copies values(default, 15.99, 5, 2);
-insert into book_copies values(default, 15.99, 4, 2);
-insert into book_copies values(default, 15.99, 4, 3);
-insert into book_copies values(default, 15.99, 2, 3);
-
--- relate books with copies 
-insert into book_book_copy values(1, "0-3344-5099-3");
-insert into book_book_copy values(2, "0-3344-5099-3");
-insert into book_book_copy values(3, "0-3344-5099-3");
-insert into book_book_copy values(4, "0-2628-1422-6");
-insert into book_book_copy values(5, "0-2628-1422-6");
-insert into book_book_copy values(6, "0-4179-6655-5");
-insert into book_book_copy values(7, "0-1318-1542-3");
+insert into book_copies values(default, 25.39, 1, 1, 1);
+insert into book_copies values(default, 50.25, 3, 1, 1); 
+insert into book_copies values(default, 75.00, 2, 1, 3); 
+insert into book_copies values(default, 15.99, 5, 2, 2);
+insert into book_copies values(default, 15.99, 4, 2, 4);
+insert into book_copies values(default, 15.99, 4, 3, 1);
+insert into book_copies values(default, 15.99, 2, 3, 2);
 
 -- insert some categories 
 
@@ -64,17 +56,17 @@ insert into categories values(default, "Science");
 
 -- relate books with categories 
 
-insert into book_category values(1,"0-3344-5099-3");
-insert into book_category values(5,"0-3344-5099-3");
-insert into book_category values(2,"0-3344-5099-3");
-insert into book_category values(2,"0-2628-1422-6");
-insert into book_category values(6,"0-2628-1422-6");
-insert into book_category values(1,"0-2628-1422-6");
-insert into book_category values(1,"0-5219-5553-X");
-insert into book_category values(3,"0-4179-6655-5");
-insert into book_category values(5,"0-4179-6655-5");
-insert into book_category values(4,"0-4179-6655-5");
-insert into book_category values(4,"0-1318-1542-3");
+insert into book_category values(1,1);
+insert into book_category values(5,1);
+insert into book_category values(2,2);
+insert into book_category values(1,2);
+insert into book_category values(6,4);
+insert into book_category values(1,5);
+insert into book_category values(1,3);
+insert into book_category values(3,2);
+insert into book_category values(5,4);
+insert into book_category values(4,1);
+insert into book_category values(4,4);
 
 
 -- insert some users 
