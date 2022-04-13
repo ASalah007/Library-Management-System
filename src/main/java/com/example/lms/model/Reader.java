@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.lms.model;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ public class Reader extends User {
     private List<BookCopy> bookCopies;
     private double fees;
 
-    public Reader(Long ID, String fullName){
+    public Reader(int ID, String fullName){
         this.ID = ID;
         this.fullName = fullName;
     };
@@ -21,7 +21,7 @@ public class Reader extends User {
     public static class Builder{
         private Reader reader;
 
-        public Builder(Long ID, String fullName){
+        public Builder(int ID, String fullName){
             reader = new Reader(ID,fullName);
         }
         public Builder email(String email){

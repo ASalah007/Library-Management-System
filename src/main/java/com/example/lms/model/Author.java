@@ -1,22 +1,22 @@
-package com.example.model;
+package com.example.lms.model;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class Author {
-    private Long ID;
+    private int ID;
     private String fullName;
     private Date birthDate;
     private String information;
 
     private List<Book> books;
 
-    public Author(Long ID, String fullName){
+    public Author(int ID, String fullName){
         this.ID = ID;
         this.fullName = fullName;
     };
-    public Long getID() {
+    public int getID() {
         return ID;
     }
     public Date getBirthDate() {
@@ -58,7 +58,7 @@ public class Author {
 
     public static class Builder{
         private Author author;
-        public Builder(Long ID, String fullName){
+        public Builder(int ID, String fullName){
             author = new Author(ID, fullName);
         }
 

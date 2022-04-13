@@ -1,12 +1,12 @@
-package com.example.model;
+package com.example.lms.model;
 
 public abstract class User {
-    protected Long ID;
+    protected int ID;
     protected String fullName;
     protected String email;
     protected String password;
 
-    public Long getID() {
+    public int getID() {
         return ID;
     }
     public String getFullName() {

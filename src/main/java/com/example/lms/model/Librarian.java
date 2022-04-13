@@ -1,17 +1,15 @@
-package com.example.model;
-
-import java.util.List;
+package com.example.lms.model;
 
 public class Librarian extends User {
 
-    public Librarian (Long ID, String fullName){
+    public Librarian (int ID, String fullName){
         this.ID = ID;
         this.fullName = fullName;
     };
 
     public static class Builder{
         private Librarian librarian;
-        public Builder(Long ID, String fullName){
+        public Builder(int ID, String fullName){
             librarian = new Librarian(ID, fullName);
         }
         public Builder email(String email){

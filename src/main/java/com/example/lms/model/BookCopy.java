@@ -1,25 +1,25 @@
-package com.example.model;
+package com.example.lms.model;
 
 import java.util.Objects;
 
 public class BookCopy {
-    private Long ID;
-    private Long cost;
+    private int ID;
+    private int cost;
     private PhysicalCondition physicalCondition;
-    private String branch;
+    private Branch branch;
 
-    public BookCopy(Long ID){this.ID = ID;}
+    public BookCopy(int ID){this.ID = ID;}
 
-    public Long getID() {
+    public int getID() {
         return ID;
     }
-    public Long getCost() {
+    public int getCost() {
         return cost;
     }
     public PhysicalCondition getPhysicalCondition() {
         return physicalCondition;
     }
-    public String getBranch() {
+    public Branch getBranch() {
         return branch;
     }
 
@@ -49,14 +49,14 @@ public class BookCopy {
 
         private BookCopy copy;
 
-        public Builder(Long ID){
+        public Builder(int ID){
             copy = new BookCopy(ID);
         }
-        public Builder cost(Long cost){
+        public Builder cost(int cost){
             copy.cost = cost;
             return this;
         }
-        public Builder branch(String branch){
+        public Builder branch(Branch branch){
             copy.branch = branch;
             return this;
         }
@@ -83,7 +83,6 @@ public class BookCopy {
         }
             return this;
         }
-
 
     }
 

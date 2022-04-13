@@ -1,16 +1,17 @@
-package com.example.model;
+package com.example.lms.model;
 
 import java.util.List;
-import java.util.Objects;
+    import java.util.Objects;
 
 public class Book {
     private String ISBN;
     private String information;
     private String title;
-    private Long numberOfPages;
+    private int numberOfPages;
 
     private List<Author> authors;
     private List<BookCopy> copies;
+
 
     public Book(String ISBN, String title){
         this.ISBN = ISBN;
@@ -23,7 +24,7 @@ public class Book {
     public String getInformation() {
         return information;
     }
-    public Long getNumberOfPages() {
+    public int getNumberOfPages() {
         return numberOfPages;
     }
     public String getISBN() {
@@ -76,7 +77,7 @@ public class Book {
             return this;
         }
 
-        public Builder numberOfPages(Long numberOfPages){
+        public Builder numberOfPages(int numberOfPages){
             book.numberOfPages = numberOfPages;
             return this;
         }
